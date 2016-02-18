@@ -14,7 +14,7 @@ if [ "$my_running" = "1" ]; then
 		echo -e "\033[32m \xE2\x9C\x93 \033[00m MySQL is currently running.";
 		echo "All found InnoDB databases from the MySQL query:";
 		echo "========";
-		echo "innodb_tables";
+		echo "$innodb_tables";
 		echo "========";
 else
 	innodb_tables=$(find /var/lib/mysql/ -type f -name '*.ibd' |awk -F/ '{print $5}' |sort |uniq);
@@ -22,6 +22,6 @@ else
 		echo -e "\033[31m \xE2\x9C\x98 \033[00m MySQL is NOT running.";
 		echo "All found InnoDB databases from a recursive find in '/var/lib/mysql/"
 		echo "========";
-		echo "innodb_tables";
+		echo "$innodb_tables";
 		echo "========";
 fi
